@@ -20,7 +20,16 @@ class HomeViewController: UIViewController {
         TwitterClient.sharedInstance.logout()
     }
     
-   
+    override func viewDidAppear(animated: Bool) {
+        TwitterClient.sharedInstance.homeTimeline({ (tweets: [Tweet]) in
+            self.tweets = tweets
+            self.tableView.reloadData()
+            
+        }) { (error: NSError) in
+            print("error \(error.localizedDescription)")
+        }
+
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -109,6 +118,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
+       
         cell.tweetLabel.text = tweets?[indexPath.row].text as? String
         cell.nameLabel.text = tweets?[indexPath.row].username as? String
         cell.tweetID = tweets?[indexPath.row].tweetID as? String

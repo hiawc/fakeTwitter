@@ -47,6 +47,8 @@ class TweetViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        username.text = ""
+        screenname.text = ""
         if replyView == true {
             navigationItem.title = "Reply"
         } else {
