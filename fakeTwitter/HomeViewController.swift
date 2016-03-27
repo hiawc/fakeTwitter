@@ -119,6 +119,8 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
        
+        
+        
         cell.tweetLabel.text = tweets?[indexPath.row].text as? String
         cell.nameLabel.text = tweets?[indexPath.row].username as? String
         cell.tweetID = tweets?[indexPath.row].tweetID as? String
@@ -128,6 +130,12 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             cell.retweetCount.text =  ""
         } else {
             cell.retweetCount.text =  "\(retweets!)"
+            let retweetOffImg = UIImage(named: "retweet") as UIImage?
+            cell.retweetButton.setImage(retweetOffImg, forState: .Normal)
+
+            let replyImg = UIImage(named: "reply") as UIImage?
+            
+            cell.replyButton.setImage(replyImg, forState: .Normal)
         }
         
         let favorites = tweets?[indexPath.row].favoritesCount
@@ -135,6 +143,9 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             cell.favoriteCount.text = ""
         } else {
             cell.favoriteCount.text =  "\(favorites!)"
+            let likeOffImg = UIImage(named: "like") as UIImage?
+            cell.favoriteButton.setImage(likeOffImg, forState: .Normal)
+
         }
         
         let didRetweet = tweets?[indexPath.row].retweeted

@@ -26,6 +26,7 @@ class TweetCell: UITableViewCell {
     var tweet = Tweet!.self()
     
 
+    @IBOutlet weak var replyButton: UIButton!
 
     @IBAction func onReply(sender: AnyObject) {
         
