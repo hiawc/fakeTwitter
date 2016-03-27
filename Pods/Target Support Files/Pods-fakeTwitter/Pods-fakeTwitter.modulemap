@@ -1,0 +1,6 @@
+framework module Pods_fakeTwitter {
+  umbrella header "Pods-fakeTwitter-umbrella.h"
+
+  export *
+  module * { export * }
+}
